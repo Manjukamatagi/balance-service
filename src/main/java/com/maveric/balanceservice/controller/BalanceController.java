@@ -17,6 +17,9 @@ public class BalanceController {
 
     @Autowired
     BalanceService balanceService;
+
+    //creating the balance details Account ID
+
     @PostMapping("accounts/{accountId}/balances")
     public ResponseEntity<BalanceDto> createBalance(@PathVariable String accountId, @Valid @RequestBody BalanceDto balanceDto) {
         BalanceDto balanceDtoResponse = balanceService.createBalance(accountId,balanceDto);

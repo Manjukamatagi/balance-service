@@ -15,17 +15,10 @@ public class BalanceServiceImpl implements  BalanceService{
 
     @Autowired
     private ModelMapper modelMapper;
-
     @Override
-    public String deleteBalance(String balanceId) {
-        Balance ball = modelMapper.map(balanceId,Balance.class);
-        return modelMapper.map(repository.save(ball),String.class);
+    public BalanceDto getBalanceDetails(String accountId, String balanceId) {
+        Balance balanceResult = repository.findByAccountId(accountId);
+        Balance bal = modelMapper.map(balanceResult,Balance.class);
+        return modelMapper.map(repository.save(bal),BalanceDto.class);
     }
-
-    @Override
-    public String deleteBalanceByAccountId(String accountId) {
-        Balance bal = modelMapper.map(accountId,Balance.class);
-         return modelMapper.map(repository.save(bal),String.class);
-    }
-
 }

@@ -18,20 +18,15 @@ public class BalanceController {
     @Autowired
     BalanceService balanceService;
 
-    /* Delete Balance details by balanceId */
-    @DeleteMapping("accounts/{accountId}/balances/{balancesId}")
-    public ResponseEntity<String> deleteBalance(@PathVariable String accountId,@PathVariable String balancesId) {
-        String result = balanceService.deleteBalance(balancesId);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    //Returns the User Balance details By balance ID
+
+    @GetMapping("accounts/{accountId}/balances/{balanceId}")
+    public ResponseEntity<String> getBalanceDetails(@PathVariable String accountId,@PathVariable String balanceId) {
+//        log.info("API call returning balance for the given valid Account Id");
+        BalanceDto balanceDtoResponse = balanceService.getBalanceDetails(accountId,balanceId);
+        return new ResponseEntity<>(String.valueOf(balanceDtoResponse.getAmount()), HttpStatus.OK);
     }
-    /* Delete Balance details by accountId */
-    @DeleteMapping("accounts/{accountId}/balances")
-    public ResponseEntity<String> deleteBalance(@PathVariable String accountId) {
-//        log.info("API call to delete balance based on Account Id");
-        String result = balanceService.deleteBalanceByAccountId(accountId);
-//        log.info("Balance deleted successfully");
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
+
 }
 
 

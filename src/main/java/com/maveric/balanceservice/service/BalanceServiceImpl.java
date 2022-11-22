@@ -16,7 +16,7 @@ public class BalanceServiceImpl implements  BalanceService{
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public BalanceDto getBalanceDetails(String accountId, String balanceId) {
+    public BalanceDto getBalanceByAccountId(String accountId) {
         Balance balanceResult = repository.findByAccountId(accountId);
         Balance bal = modelMapper.map(balanceResult,Balance.class);
         return modelMapper.map(repository.save(bal),BalanceDto.class);

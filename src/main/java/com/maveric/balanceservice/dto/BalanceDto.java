@@ -22,7 +22,7 @@ public class BalanceDto {
     private String accountId;
     @Valid
     @NotNull(message = "Amount is mandatory")
-    @Min(value = 0,message = "Amount shouldn't be lesser than zero")
+    @Min(value = 0,message = "Amount shouldn't be lesser than zero!")
     private Number amount;
     @Valid
     @NotNull(message = "Currency is mandatory INR/DOLLAR/EURO ")

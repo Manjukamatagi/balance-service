@@ -1,6 +1,6 @@
 package com.maveric.balanceservice.service;
 
-import com.maveric.balanceservice.model.Balance;
+import com.maveric.balanceservice.dao.Balance;
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.repository.BalanceRepository;
 import org.modelmapper.ModelMapper;

@@ -1,7 +1,7 @@
 package com.maveric.balanceservice.mapper;
 
 
-import com.maveric.balanceservice.dao.Balance;
+import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.dto.BalanceDto;
 import org.mapstruct.Mapper;
 

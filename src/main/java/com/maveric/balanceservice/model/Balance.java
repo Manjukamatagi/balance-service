@@ -1,4 +1,4 @@
-package com.maveric.balanceservice.dao;
+package com.maveric.balanceservice.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

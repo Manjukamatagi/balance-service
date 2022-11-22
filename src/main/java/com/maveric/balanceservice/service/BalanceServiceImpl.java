@@ -1,6 +1,6 @@
 package com.maveric.balanceservice.service;
 
-import com.maveric.balanceservice.dao.Balance;
+import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.repository.BalanceRepository;
 import org.modelmapper.ModelMapper;
@@ -16,9 +16,15 @@ public class BalanceServiceImpl implements  BalanceService{
     @Autowired
     private ModelMapper modelMapper;
 
+
+//    public BalanceDto updateUser(String accountId, BalanceDto balanceDto) {
+//        Balance bal = modelMapper.map(balanceDto,Balance.class);
+//        return modelMapper.map(repository.save(bal),BalanceDto.class);
+//    }
+
     @Override
-    public BalanceDto createBalance(String accountId, BalanceDto balanceDto) {
+    public BalanceDto updateBalance(String accountId, String balanceId, BalanceDto balanceDto) {
         Balance bal = modelMapper.map(balanceDto,Balance.class);
-        return modelMapper.map(repository.save(bal),BalanceDto.class);
+         return modelMapper.map(repository.save(bal),BalanceDto.class);
     }
 }

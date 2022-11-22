@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 
 
 public class BalanceController {
 
     @Autowired
     BalanceService balanceService;
-    @PostMapping("accounts/{accountId}/balances")
-    public ResponseEntity<BalanceDto> createBalance(@PathVariable String accountId, @Valid @RequestBody BalanceDto balanceDto) {
-        BalanceDto balanceDtoResponse = balanceService.createBalance(accountId,balanceDto);
-        return new ResponseEntity<>(balanceDtoResponse, HttpStatus.CREATED);
+    //Update balance by ID
+    @PutMapping("accounts/{accountId}/balances/{balanceId}")
+    public ResponseEntity<BalanceDto> updateBalance(@PathVariable String accountId, @Valid @PathVariable String balanceId, @Valid @RequestBody BalanceDto balanceDto) {
+        BalanceDto balanceDtoResponse = balanceService.updateBalance (accountId,balanceId,balanceDto);
+        return new ResponseEntity<>(balanceDtoResponse, HttpStatus.OK);
     }
 
 }

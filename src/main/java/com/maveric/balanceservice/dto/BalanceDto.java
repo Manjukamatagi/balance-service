@@ -25,7 +25,7 @@ public class BalanceDto {
     @Min(value = 0,message = "Amount shouldn't be lesser than zero!")
     private Number amount;
     @Valid
-    @NotNull(message = "Currency is mandatory INR/DOLLAR/EURO ")
+    @NotNull(message = "Currency is mandatory")
     private Currency currency;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

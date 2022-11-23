@@ -18,7 +18,6 @@ public class BalanceController {
     @Autowired
     BalanceService balanceService;
 
-
     //Returns the User Balance details By account ID
     @GetMapping("accounts/{accountId}/balances")
     public ResponseEntity<BalanceDto> getBalances(@PathVariable String accountId) {

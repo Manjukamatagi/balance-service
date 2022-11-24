@@ -2,6 +2,7 @@ package com.maveric.balanceservice.controller;
 
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.service.BalanceService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,15 @@ import javax.validation.Valid;
 
 public class BalanceController {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BalanceController.class);
     @Autowired
     BalanceService balanceService;
     //Update balance by ID
     @PutMapping("accounts/{accountId}/balances/{balanceId}")
-    public ResponseEntity<BalanceDto> updateBalance(@PathVariable String accountId, @Valid @PathVariable String balanceId, @Valid @RequestBody BalanceDto balanceDto) {
-        BalanceDto balanceDtoResponse = balanceService.updateBalance (accountId,balanceId,balanceDto);
+    public ResponseEntity<BalanceDto> updateBalance(@PathVariable String accountId,@PathVariable String balanceId,@Valid @RequestBody BalanceDto balanceDto) {
+        log.info("API call to Update Balance for valid Balance Id");
+        BalanceDto balanceDtoResponse = balanceService.updateBalance(accountId,balanceId,balanceDto);
+        log.info("Balance Updated successfully");
         return new ResponseEntity<>(balanceDtoResponse, HttpStatus.OK);
     }
 

@@ -1,24 +1,46 @@
 package com.maveric.balanceservice.service;
 
-import com.maveric.balanceservice.dao.Balance;
 import com.maveric.balanceservice.dto.BalanceDto;
+import com.maveric.balanceservice.exception.BalanceNotFoundException;
+import com.maveric.balanceservice.mapper.BalanceMapper;
+import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.repository.BalanceRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.maveric.balanceservice.constants.Constants.getCurrentDateTime;
+
 @Service
 public class BalanceServiceImpl implements  BalanceService{
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BalanceServiceImpl.class);
     @Autowired
     private BalanceRepository repository;
 
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private BalanceMapper mapper;
+
     @Override
+
     public BalanceDto updateBalance(String accountId, String balanceId, BalanceDto balanceDto) {
-        Balance bal = modelMapper.map(balanceDto,Balance.class);
-         return modelMapper.map(repository.save(bal),BalanceDto.class);
+        if (accountId.equals(balanceDto.getAccountId())) {
+            Balance balanceResult = repository.findById(balanceId).orElseThrow(() -> new BalanceNotFoundException("Balance not found"));
+            balanceResult.set_id(balanceResult.get_id());
+            balanceResult.setAmount(balanceDto.getAmount());
+            balanceResult.setCurrency(balanceDto.getCurrency());
+            balanceResult.setAccountId(balanceResult.getAccountId());
+            balanceResult.setCreatedAt(balanceResult.getCreatedAt());
+            balanceResult.setUpdatedAt(getCurrentDateTime());
+            Balance accountUpdated = repository.save(balanceResult);
+            log.info("Balance details Updated Successfully for given Balance Id");
+            return mapper.map(accountUpdated);
+        } else {
+            log.error("Account Id not found! Cannot Update Balance");
+            throw new BalanceNotFoundException("Account Id not found! Cannot Update Balance");
+        }
     }
 }

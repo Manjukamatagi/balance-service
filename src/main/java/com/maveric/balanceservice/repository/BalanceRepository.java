@@ -1,6 +1,6 @@
 package com.maveric.balanceservice.repository;
 
-import com.maveric.balanceservice.dao.Balance;
+import com.maveric.balanceservice.model.Balance;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,6 +2,7 @@ package com.maveric.balanceservice.controller;
 
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.service.BalanceService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import javax.validation.Valid;
 
 
 public class BalanceController {
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BalanceController.class);
     @Autowired
     BalanceService balanceService;
 
@@ -27,9 +28,9 @@ public class BalanceController {
     /* Delete Balance details by accountId */
     @DeleteMapping("accounts/{accountId}/balances")
     public ResponseEntity<String> deleteBalance(@PathVariable String accountId) {
-//        log.info("API call to delete balance based on Account Id");
+        log.info("API call to delete balance based on Account Id");
         String result = balanceService.deleteBalanceByAccountId(accountId);
-//        log.info("Balance deleted successfully");
+        log.info("Balance deleted successfully");
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

@@ -18,14 +18,7 @@ import static com.maveric.balanceservice.constants.Constants.*;
 @RestControllerAdvice
 public class ExceptionControllerAdvisor {
     String exceptionString="";
-    @ExceptionHandler(BalanceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public static final ErrorDto handleBalanceNotFoundException(BalanceNotFoundException exception) {
-        ErrorDto errorDto = new ErrorDto();
-        errorDto.setCode(BALANCE_NOT_FOUND_CODE);
-        errorDto.setMessage(exception.getMessage());
-        return errorDto;
-    }
+
     @ExceptionHandler(InvalidException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public static final ErrorDto invalidException(InvalidException exception) {

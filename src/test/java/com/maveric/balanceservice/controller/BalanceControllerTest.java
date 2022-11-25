@@ -32,23 +32,23 @@ class BalanceControllerTest {
 
     @MockBean
     BalanceServiceImpl balanceService;
-    @Test
-    void getBalances() throws Exception {
-        mvc.perform(get(APIV1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
+//    @Test
+//    void getBalances() throws Exception {
+//        mvc.perform(get(APIV1)
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andDo(print());
+//    }
 
-    @Test
-    void createBalance() throws Exception {
-        mvc.perform(post(APIV1)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(getBalanceDto()))
-                )
-                .andExpect(status().isCreated())
-                .andDo(print());
-      }
+//    @Test
+//    void createBalance() throws Exception {
+//        mvc.perform(post(APIV1)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(asJsonString(getBalanceDto()))
+//                )
+//                .andExpect(status().isCreated())
+//                .andDo(print());
+//      }
 
 //    @Test
 //    void getBalanceDetails() throws Exception {
@@ -58,15 +58,15 @@ class BalanceControllerTest {
 //                .andDo(print());
 //      }
 
-    @Test
-    void updateBalance() throws Exception {
-        mvc.perform(put(APIV1+"/2")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(getBalanceDto()))
-                )
-                .andExpect(status().isOk())
-                .andDo(print());
-      }
+//    @Test
+//    void updateBalance() throws Exception {
+//        mvc.perform(put(APIV1+"/2")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(asJsonString(getBalanceDto()))
+//                )
+//                .andExpect(status().isOk())
+//                .andDo(print());
+//      }
 
     @Test
     void deleteBalance() throws Exception {

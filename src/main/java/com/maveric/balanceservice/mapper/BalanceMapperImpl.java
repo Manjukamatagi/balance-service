@@ -21,5 +21,16 @@ public class BalanceMapperImpl implements BalanceMapper {
                 balance.getUpdatedAt()
         );
     }
+    @Override
+    public Balance map(BalanceDto balanceDto) {
+        return new Balance(
+                balanceDto.get_id(),
+                balanceDto.getAccountId(),
+                balanceDto.getAmount(),
+                balanceDto.getCurrency(),
+                balanceDto.getCreatedAt(),
+                balanceDto.getUpdatedAt()
+        );
+    }
 
 }

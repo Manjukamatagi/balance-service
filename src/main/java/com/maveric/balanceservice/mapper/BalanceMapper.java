@@ -11,5 +11,6 @@ import java.util.List;
 public interface BalanceMapper {
 
     BalanceDto map(Balance balance);
+    Balance map(BalanceDto balanceDto);
 
 }

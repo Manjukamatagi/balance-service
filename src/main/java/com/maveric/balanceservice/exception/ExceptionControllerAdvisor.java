@@ -1,6 +1,7 @@
 package com.maveric.balanceservice.exception;
 
 import com.maveric.balanceservice.dto.ErrorDto;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -17,8 +18,9 @@ import static com.maveric.balanceservice.constants.Constants.*;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvisor {
-    String exceptionString="";
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ExceptionControllerAdvisor.class);
+    String exceptionString="";
     @ExceptionHandler(InvalidException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public static final ErrorDto invalidException(InvalidException exception) {

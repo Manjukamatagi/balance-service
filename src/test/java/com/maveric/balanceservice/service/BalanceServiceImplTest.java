@@ -43,7 +43,7 @@ class BalanceServiceImplTest {
         when(repository.findById("2")).thenReturn(Optional.ofNullable(getBalance()));
         when(mapper.map(any(Balance.class))).thenReturn(getBalanceDto());
         when(repository.save(any())).thenReturn(getBalance());
-        BalanceDto BalanceDto = service.updateBalance("123","2",getBalanceDto());
+        BalanceDto BalanceDto = service.updateBalance("8123","2",getBalanceDto());
         assertSame(BalanceDto.getAccountId(),getBalanceDto().getAccountId());
       }
     @Test

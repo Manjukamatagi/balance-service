@@ -1,4 +1,4 @@
-package com.maveric.balanceservice;
+package com.maveric.balanceservice.service;
 
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
@@ -40,7 +40,6 @@ class BalanceServiceImplTest {
     @Mock
     private Page pageResult;
 
-
     @Test
     void createBalance() {
         when(mapper.map(any(BalanceDto.class))).thenReturn(getBalance());
@@ -49,17 +48,4 @@ class BalanceServiceImplTest {
         BalanceDto balanceDto = service.createBalance(getBalance().getAccountId(),getBalanceDto());
         assertSame(balanceDto.getAccountId(), getBalance().getAccountId());
     }
-    @Test
-    void createBalance_failure() {
-        when(repository.findByAccountId("123")).thenReturn(getBalance());
-        Throwable error = assertThrows(BalanceAlreadyExistException.class,()->service.createBalance("123",getBalanceDto()));
-        assertEquals("Balance already exists for this Account Id-123",error.getMessage());
-    }
-
-    @Test
-    void createBalance_failure2() {
-        Throwable error = assertThrows(BalanceNotFoundException.class,()->service.createBalance("12",getBalanceDto()));
-        assertEquals("Account Id not found! Cannot create balance.",error.getMessage());
-    }
-
 }

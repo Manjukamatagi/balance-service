@@ -32,13 +32,6 @@ class BalanceControllerTest {
 
     @MockBean
     BalanceServiceImpl balanceService;
-    @Test
-    void getBalances() throws Exception {
-        mvc.perform(get(APIV1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
 
     @Test
     void createBalance() throws Exception {
@@ -50,37 +43,4 @@ class BalanceControllerTest {
                 .andDo(print());
       }
 
-//    @Test
-//    void getBalanceDetails() throws Exception {
-//        mvc.perform(get(APIV1+"/1")
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andDo(print());
-//      }
-
-    @Test
-    void updateBalance() throws Exception {
-        mvc.perform(put(APIV1+"/2")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(getBalanceDto()))
-                )
-                .andExpect(status().isOk())
-                .andDo(print());
-      }
-
-    @Test
-    void deleteBalance() throws Exception {
-        mvc.perform(delete(APIV1+"/2")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print());
-      }
-
-    @Test
-    void testDeleteBalance() throws Exception {
-        mvc.perform(delete(APIV1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print());
-      }
 }

@@ -9,19 +9,7 @@ import java.util.List;
 
 @Component
 
-public class BalanceMapperImpl implements BalanceMapper{
-
-    @Override
-    public BalanceDto map(Balance balance) {
-        return new BalanceDto(
-                balance.get_id(),
-                balance.getAccountId(),
-                balance.getAmount(),
-                balance.getCurrency(),
-                balance.getCreatedAt(),
-                balance.getUpdatedAt()
-        );
-    }
+public class BalanceMapperImpl implements BalanceMapper {
     @Override
     public Balance map(BalanceDto balanceDto) {
         return new Balance(
@@ -31,6 +19,17 @@ public class BalanceMapperImpl implements BalanceMapper{
                 balanceDto.getCurrency(),
                 balanceDto.getCreatedAt(),
                 balanceDto.getUpdatedAt()
+        );
+    }
+    @Override
+    public BalanceDto map(Balance balance) {
+        return new BalanceDto(
+                balance.get_id(),
+                balance.getAccountId(),
+                balance.getAmount(),
+                balance.getCurrency(),
+                balance.getCreatedAt(),
+                balance.getUpdatedAt()
         );
     }
     @Override

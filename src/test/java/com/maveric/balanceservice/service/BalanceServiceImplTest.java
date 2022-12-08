@@ -3,6 +3,7 @@ package com.maveric.balanceservice.service;
 import com.maveric.balanceservice.dto.BalanceDto;
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
 
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
@@ -13,7 +14,6 @@ import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.repository.BalanceRepository;
 
 import com.maveric.balanceservice.service.BalanceServiceImpl;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -46,6 +46,21 @@ class BalanceServiceImplTest {
 
     @Mock
     private Page pageResult;
+
+//    @Test
+//    void getBalanceByAccountId() {
+//        when(repository.findByAccountId("123")).thenReturn(getBalance());
+//        when(mapper.map(any(Balance.class))).thenReturn(getBalanceDto());
+//        BalanceDto balanceDto = service.getBalanceByAccountId("123");
+//        assertSame(balanceDto.getAccountId(),getBalanceDto().getAccountId());
+//    }
+    @Test
+    void getBalanceDetails() {
+        when(repository.findById("2")).thenReturn(Optional.of(getBalance()));
+        when(mapper.map(any(Balance.class))).thenReturn(getBalanceDto());
+        BalanceDto balanceDto = service.getBalanceDetails("123","2");
+        assertSame(balanceDto.getAccountId(),getBalanceDto().getAccountId());
+    }
 
     @Test
 
@@ -93,4 +108,5 @@ class BalanceServiceImplTest {
         assertSame(balanceDto.getAccountId(), getBalance().getAccountId());
 
     }
+
 }

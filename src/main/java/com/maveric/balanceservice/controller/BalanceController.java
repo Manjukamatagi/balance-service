@@ -20,6 +20,14 @@ public class BalanceController {
     @Autowired
     BalanceService balanceService;
 
+    //Returns the User Balance details By balance ID
+
+    @GetMapping("accounts/{accountId}/balances/{balanceId}")
+    public ResponseEntity<String> getBalanceDetails(@PathVariable String accountId,@PathVariable String balanceId) {
+        log.info("API call returning balance for the given valid Account Id");
+        BalanceDto balanceDtoResponse = balanceService.getBalanceDetails(accountId, balanceId);
+        return new ResponseEntity<>(String.valueOf(balanceDtoResponse.getAmount()), HttpStatus.OK);
+    }
     //Update balance by ID
     @PutMapping("accounts/{accountId}/balances/{balanceId}")
     public ResponseEntity<BalanceDto> updateBalance(@PathVariable String accountId,@PathVariable String balanceId,@Valid @RequestBody BalanceDto balanceDto) {
@@ -51,7 +59,9 @@ public class BalanceController {
         String result = balanceService.deleteBalanceByAccountId(accountId);
         log.info("Balance deleted successfully");
         return new ResponseEntity<>(result, HttpStatus.OK);
+
     }
+
 }
 
 

@@ -10,10 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class BalanceServiceApplicationTests {
+
+public
+class BalanceServiceApplicationTests {
 
 	public static final String APIV1 ="/api/v1/accounts/8123/balances";
-
 
 	@Test
 	void contextLoads() {
@@ -25,7 +26,6 @@ public class BalanceServiceApplicationTests {
 				._id("100")
 				.accountId("8123")
 				.amount(4000)
-				.amount(2000)
 				.currency(Currency.INR)
 				.build();
 	}
@@ -35,7 +35,6 @@ public class BalanceServiceApplicationTests {
 				._id("100")
 				.accountId("8123")
 				.amount(4000)
-				.amount(2000)
 				.currency(Currency.INR)
 				.build();
 	}
@@ -46,5 +45,6 @@ public class BalanceServiceApplicationTests {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 }

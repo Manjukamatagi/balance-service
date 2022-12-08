@@ -21,11 +21,31 @@ public class BalanceServiceImpl implements BalanceService {
     @Autowired
     private BalanceMapper mapper;
 
+//    @Override
+//    public BalanceDto getBalanceByAccountId(String accountId) {
+//
+//        Balance balanceResult = repository.     findByAccountId(accountId);
+//        if (balanceResult != null)
+//        {
+//            log.info("Retrieved Balance details for given Account Id");
+//            return mapper.map(balanceResult);
+//        }
+//        else
+//        {
+//            log.info("Balance not found for given Account Id returns Empty Balance details");
+//            return new BalanceDto();
+//        }
+//    }
+
+
     @Override
     public BalanceDto getBalanceDetails(String accountId,String balanceId) {
         log.info("Retrieved list of Balance details for given Balance Id");
         Balance balanceResult = repository.findById(balanceId).orElseThrow(() -> new BalanceNotFoundException("Balance not found"));
         return mapper.map(balanceResult);
     }
+
+
+
 
 }

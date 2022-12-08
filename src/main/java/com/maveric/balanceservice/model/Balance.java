@@ -2,6 +2,7 @@ package com.maveric.balanceservice.model;
 
 import com.maveric.balanceservice.enumeration.Currency;
 import lombok.*;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,4 +22,6 @@ public class Balance {
     private Currency currency;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
 }

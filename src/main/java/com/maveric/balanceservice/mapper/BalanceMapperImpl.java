@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
+
 public class BalanceMapperImpl implements BalanceMapper {
     @Override
     public Balance map(BalanceDto balanceDto) {
@@ -20,7 +21,6 @@ public class BalanceMapperImpl implements BalanceMapper {
                 balanceDto.getUpdatedAt()
         );
     }
-
     @Override
     public BalanceDto map(Balance balance) {
         return new BalanceDto(
@@ -32,7 +32,6 @@ public class BalanceMapperImpl implements BalanceMapper {
                 balance.getUpdatedAt()
         );
     }
-
     @Override
     public List<Balance> mapToModel(List<BalanceDto> balanceDtos) {
         if(!balanceDtos.isEmpty())

@@ -11,10 +11,8 @@ import java.util.List;
 public interface BalanceMapper {
 
     Balance map(BalanceDto balanceDto);
-
     BalanceDto map(Balance balance);
-
     List<Balance> mapToModel (List<BalanceDto> balances);
-
     List<BalanceDto> mapToDto (List<Balance> balances);
+
 }

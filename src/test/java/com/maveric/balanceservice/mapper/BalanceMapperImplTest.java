@@ -41,4 +41,5 @@ class BalanceMapperImplTest {
         List<BalanceDto> balances = balanceMapper.mapToDto(Arrays.asList(getBalance(),getBalance()));
         assertEquals(2,balances.size());
     }
+
 }

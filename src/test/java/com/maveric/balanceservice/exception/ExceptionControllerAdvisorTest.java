@@ -10,6 +10,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
+
 class ExceptionControllerAdvisorTest {
     private ExceptionControllerAdvisor controllerAdvisor = new ExceptionControllerAdvisor();
     @Test
@@ -54,4 +55,5 @@ class ExceptionControllerAdvisorTest {
         ErrorDto error = controllerAdvisor.handleBalanceAlreadyExistException(exception);
         assertEquals("400",error.getCode());
       }
+
 }

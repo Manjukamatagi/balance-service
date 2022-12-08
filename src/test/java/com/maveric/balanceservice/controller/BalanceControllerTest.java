@@ -40,12 +40,4 @@ class BalanceControllerTest {
                 .andDo(print());
     }
 
-//    @Test
-//    void getBalanceDetails() throws Exception {
-//        mvc.perform(get(APIV1+"/1")
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andDo(print());
-//      }
-
 }

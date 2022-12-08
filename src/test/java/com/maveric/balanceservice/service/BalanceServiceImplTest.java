@@ -47,9 +47,4 @@ class BalanceServiceImplTest {
         BalanceDto balanceDto = service.getBalanceDetails("123", "2");
         assertSame(balanceDto.getAccountId(), getBalanceDto().getAccountId());
     }
-
-
-
-
-
 }

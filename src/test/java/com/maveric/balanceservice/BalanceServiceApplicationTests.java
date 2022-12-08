@@ -10,9 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
+
 public
 class BalanceServiceApplicationTests {
-	public static final String APIV1 ="/api/v1/accounts/123/balances";
+	public static final String APIV1 ="/api/v1/accounts/8123/balances";
 
 	@Test
 	void contextLoads() {
@@ -21,18 +22,18 @@ class BalanceServiceApplicationTests {
 	public static BalanceDto getBalanceDto()
 	{
 		return  BalanceDto.builder()
-				._id("1")
-				.accountId("123")
-				.amount(2000)
+				._id("100")
+				.accountId("8123")
+				.amount(4000)
 				.currency(Currency.INR)
 				.build();
 	}
 	public static Balance getBalance()
 	{
 		return  Balance.builder()
-				._id("1")
-				.accountId("123")
-				.amount(2000)
+				._id("100")
+				.accountId("8123")
+				.amount(4000)
 				.currency(Currency.INR)
 				.build();
 	}

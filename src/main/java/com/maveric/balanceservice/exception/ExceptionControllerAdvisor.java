@@ -1,11 +1,29 @@
 package com.maveric.balanceservice.exception;
 
 import com.maveric.balanceservice.dto.ErrorDto;
+
+import feign.FeignException;
+
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+
+
+import org.slf4j.Logger;
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+
+import org.springframework.validation.FieldError;
+
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,6 +40,7 @@ public class ExceptionControllerAdvisor {
     String exceptionString="";
     @ExceptionHandler(BalanceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
+
     public static final ErrorDto handleBalanceNotFoundException(BalanceNotFoundException exception) {
         ErrorDto errorDto = new ErrorDto();
         errorDto.setCode(BALANCE_NOT_FOUND_CODE);
@@ -86,6 +105,7 @@ public class ExceptionControllerAdvisor {
         log.error("{}->{}",BAD_REQUEST_CODE,exceptionString);
         return errorDto;
     }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final ErrorDto handleOtherHttpException(Exception exception) {
@@ -96,6 +116,16 @@ public class ExceptionControllerAdvisor {
         log.error("{} {}-> {}",INTERNAL_SERVER_ERROR_CODE,INTERNAL_SERVER_ERROR_MESSAGE,exceptionString);
         return errorDto;
     }
-
+    @ExceptionHandler(FeignException.class)
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public ErrorDto handleHttpFeignException(
+            FeignException ex) {
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setCode(SERVICE_UNAVAILABLE_CODE);
+        errorDto.setMessage(SERVICE_UNAVAILABLE_MESSAGE);
+        exceptionString = ex.getMessage();
+        log.error("{} -> {} -> {}",SERVICE_UNAVAILABLE_CODE,SERVICE_UNAVAILABLE_MESSAGE,exceptionString);
+        return errorDto;
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.maveric.balanceservice.service;
 
 import com.maveric.balanceservice.dto.BalanceDto;
+
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
 import com.maveric.balanceservice.exception.BalanceNotFoundException;
 import com.maveric.balanceservice.mapper.BalanceMapper;
@@ -27,6 +28,25 @@ public class BalanceServiceImpl implements  BalanceService{
     @Autowired
     private BalanceMapper mapper;
 
+    @Override
+
+    public BalanceDto updateBalance(String accountId, String balanceId, BalanceDto balanceDto) {
+        if (accountId.equals(balanceDto.getAccountId())) {
+            Balance balanceResult = repository.findById(balanceId).orElseThrow(() -> new BalanceNotFoundException("Balance not found"));
+            balanceResult.set_id(balanceResult.get_id());
+            balanceResult.setAmount(balanceDto.getAmount());
+            balanceResult.setCurrency(balanceDto.getCurrency());
+            balanceResult.setAccountId(balanceResult.getAccountId());
+            balanceResult.setCreatedAt(balanceResult.getCreatedAt());
+            balanceResult.setUpdatedAt(getCurrentDateTime());
+            Balance accountUpdated = repository.save(balanceResult);
+            log.info("Balance details Updated Successfully for given Balance Id");
+            return mapper.map(accountUpdated);
+        } else {
+            log.error("Account Id not found! Cannot Update Balance");
+            throw new BalanceNotFoundException("Account Id not found! Cannot Update Balance");
+        }
+    }
     public BalanceDto createBalance(String accountId, BalanceDto balanceDto) {
         if (accountId.equals(balanceDto.getAccountId())) {
             if(repository.findByAccountId(accountId)==null) {
@@ -44,6 +64,7 @@ public class BalanceServiceImpl implements  BalanceService{
         } else {
             log.error("Account Id not found! Cannot create balance.");
             throw new BalanceNotFoundException("Account Id not found! Cannot create balance.");
+
         }
     }
 }

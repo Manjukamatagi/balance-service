@@ -5,7 +5,9 @@ import com.maveric.balanceservice.model.Balance;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class BalanceMapperImpl implements BalanceMapper{
+
     @Override
     public BalanceDto map(Balance balance) {
         return new BalanceDto(
@@ -17,7 +19,6 @@ public class BalanceMapperImpl implements BalanceMapper{
                 balance.getUpdatedAt()
         );
     }
-
     @Override
     public Balance map(BalanceDto balanceDto) {
         return new Balance(

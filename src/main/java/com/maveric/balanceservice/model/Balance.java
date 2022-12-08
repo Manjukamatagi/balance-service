@@ -22,4 +22,6 @@ public class Balance {
     private Currency currency;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
 }

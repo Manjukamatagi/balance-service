@@ -4,11 +4,9 @@ import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.model.Balance;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
-
 @Component
-public class BalanceMapperImpl implements BalanceMapper {
+
+public class BalanceMapperImpl implements BalanceMapper{
 
     @Override
     public BalanceDto map(Balance balance) {

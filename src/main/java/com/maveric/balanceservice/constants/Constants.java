@@ -3,12 +3,15 @@ package com.maveric.balanceservice.constants;
 import java.time.LocalDateTime;
 
 public class Constants {
+
     private Constants()
     {
 
     }
     public static LocalDateTime getCurrentDateTime() {
-        return (java.time.LocalDateTime.now());
+
+        return (LocalDateTime.now());
+
     }
     public static final String BALANCE_NOT_FOUND_CODE="404";
     public static final String BALANCE_NOT_FOUND_MESSAGE="Balance not Found for Id-";
@@ -30,3 +33,4 @@ public class Constants {
     public static final String INTERNAL_SERVER_ERROR_MESSAGE="Server could not resolve your request.";
 
 }
+

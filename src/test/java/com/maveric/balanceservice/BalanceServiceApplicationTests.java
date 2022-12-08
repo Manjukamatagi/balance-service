@@ -14,6 +14,7 @@ public class BalanceServiceApplicationTests {
 
 	public static final String APIV1 ="/api/v1/accounts/8123/balances";
 
+
 	@Test
 	void contextLoads() {
 		assertTrue(true);
@@ -43,7 +44,5 @@ public class BalanceServiceApplicationTests {
 			throw new RuntimeException(e);
 		}
 	}
-
-
 
 }

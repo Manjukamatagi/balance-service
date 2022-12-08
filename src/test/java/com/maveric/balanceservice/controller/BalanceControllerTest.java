@@ -34,6 +34,7 @@ class BalanceControllerTest {
     BalanceServiceImpl balanceService;
 
     @Test
+
     void updateBalance() throws Exception {
         mvc.perform(put(APIV1+"/2")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -42,4 +43,14 @@ class BalanceControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
       }
+@Test
+    void createBalance() throws Exception {
+        mvc.perform(post(APIV1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(getBalanceDto()))
+                )
+                .andExpect(status().isCreated())
+                .andDo(print());
+      }
+
 }

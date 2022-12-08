@@ -1,0 +1,49 @@
+package com.maveric.balanceservice.service;
+
+import com.maveric.balanceservice.dto.BalanceDto;
+import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+import com.maveric.balanceservice.exception.BalanceNotFoundException;
+import com.maveric.balanceservice.mapper.BalanceMapper;
+import com.maveric.balanceservice.model.Balance;
+import com.maveric.balanceservice.repository.BalanceRepository;
+import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import static com.maveric.balanceservice.constants.Constants.getCurrentDateTime;
+
+@Service
+public class BalanceServiceImpl implements  BalanceService{
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BalanceServiceImpl.class);
+
+    @Autowired
+    private BalanceRepository repository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
+    private BalanceMapper mapper;
+
+    public BalanceDto createBalance(String accountId, BalanceDto balanceDto) {
+        if (accountId.equals(balanceDto.getAccountId())) {
+            if(repository.findByAccountId(accountId)==null) {
+                balanceDto.setCreatedAt(getCurrentDateTime());
+                balanceDto.setUpdatedAt(getCurrentDateTime());
+                Balance balance = mapper.map(balanceDto);
+                Balance balanceResult = repository.save(balance);
+                log.error("Created new Balance successfully");
+                return mapper.map(balanceResult);
+            }
+            else {
+                log.error("Balance Already Exist for this Account Id");
+                throw new BalanceAlreadyExistException("Balance already exists for this Account Id-"+balanceDto.getAccountId());
+            }
+        } else {
+            log.error("Account Id not found! Cannot create balance.");
+            throw new BalanceNotFoundException("Account Id not found! Cannot create balance.");
+        }
+    }
+}

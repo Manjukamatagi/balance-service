@@ -25,6 +25,7 @@ public class BalanceRepositoryTest {
     public void testSave() {
         Balance balance = repository.save(getBalance());
         assertEquals("8123",balance.getAccountId());
+
     }
 
     @Test

@@ -8,11 +8,9 @@ import java.util.List;
 
 @Mapper(componentModel="Balance")
 public interface BalanceMapper {
-    Balance map(BalanceDto balanceDto);
-
     BalanceDto map(Balance balance);
-
+    Balance map(BalanceDto balanceDto);
     List<Balance> mapToModel (List<BalanceDto> balances);
-
     List<BalanceDto> mapToDto (List<Balance> balances);
+
 }

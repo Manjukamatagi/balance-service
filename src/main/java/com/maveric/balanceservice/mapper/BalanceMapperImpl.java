@@ -8,18 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
+
 public class BalanceMapperImpl implements BalanceMapper{
-    @Override
-    public Balance map(BalanceDto balanceDto) {
-        return new Balance(
-                balanceDto.get_id(),
-                balanceDto.getAccountId(),
-                balanceDto.getAmount(),
-                balanceDto.getCurrency(),
-                balanceDto.getCreatedAt(),
-                balanceDto.getUpdatedAt()
-        );
-    }
+
     @Override
     public BalanceDto map(Balance balance) {
         return new BalanceDto(
@@ -29,6 +20,17 @@ public class BalanceMapperImpl implements BalanceMapper{
                 balance.getCurrency(),
                 balance.getCreatedAt(),
                 balance.getUpdatedAt()
+        );
+    }
+    @Override
+    public Balance map(BalanceDto balanceDto) {
+        return new Balance(
+                balanceDto.get_id(),
+                balanceDto.getAccountId(),
+                balanceDto.getAmount(),
+                balanceDto.getCurrency(),
+                balanceDto.getCreatedAt(),
+                balanceDto.getUpdatedAt()
         );
     }
     @Override
@@ -45,6 +47,7 @@ public class BalanceMapperImpl implements BalanceMapper{
         else
             return Collections.<Balance>emptyList();
     }
+
     @Override
     public List<BalanceDto> mapToDto(List<Balance> balances) {
         if(!balances.isEmpty())
@@ -59,6 +62,5 @@ public class BalanceMapperImpl implements BalanceMapper{
         else
             return Collections.<BalanceDto>emptyList();
     }
-
 
 }

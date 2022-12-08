@@ -14,6 +14,7 @@ public class BalanceServiceApplicationTests {
 
 	public static final String APIV1 ="/api/v1/accounts/8123/balances";
 
+
 	@Test
 	void contextLoads() {
 		assertTrue(true);
@@ -24,6 +25,7 @@ public class BalanceServiceApplicationTests {
 				._id("100")
 				.accountId("8123")
 				.amount(4000)
+				.amount(2000)
 				.currency(Currency.INR)
 				.build();
 	}
@@ -33,6 +35,7 @@ public class BalanceServiceApplicationTests {
 				._id("100")
 				.accountId("8123")
 				.amount(4000)
+				.amount(2000)
 				.currency(Currency.INR)
 				.build();
 	}

@@ -35,6 +35,22 @@ class BalanceControllerTest {
 
     @Test
 
+    void deleteBalance() throws Exception {
+        mvc.perform(delete(APIV1+"/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+      }
+
+    @Test
+    void testDeleteBalance() throws Exception {
+        mvc.perform(delete(APIV1)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+      }
+
+
     void updateBalance() throws Exception {
         mvc.perform(put(APIV1+"/2")
                         .contentType(MediaType.APPLICATION_JSON)

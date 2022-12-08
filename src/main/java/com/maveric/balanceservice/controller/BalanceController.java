@@ -14,12 +14,12 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1")
 
 
-
 public class BalanceController {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(BalanceController.class);
     @Autowired
     BalanceService balanceService;
+
     //Update balance by ID
     @PutMapping("accounts/{accountId}/balances/{balanceId}")
     public ResponseEntity<BalanceDto> updateBalance(@PathVariable String accountId,@PathVariable String balanceId,@Valid @RequestBody BalanceDto balanceDto) {
@@ -38,4 +38,20 @@ public class BalanceController {
 
     }
 
+    /* Delete Balance details by balanceId */
+    @DeleteMapping("accounts/{accountId}/balances/{balancesId}")
+    public ResponseEntity<String> deleteBalance(@PathVariable String accountId,@PathVariable String balancesId) {
+        String result = balanceService.deleteBalance(balancesId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    /* Delete Balance details by accountId */
+    @DeleteMapping("accounts/{accountId}/balances")
+    public ResponseEntity<String> deleteBalance(@PathVariable String accountId) {
+        log.info("API call to delete balance based on Account Id");
+        String result = balanceService.deleteBalanceByAccountId(accountId);
+        log.info("Balance deleted successfully");
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
+
+

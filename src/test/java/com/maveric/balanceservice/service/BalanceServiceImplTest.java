@@ -4,10 +4,14 @@ import com.maveric.balanceservice.dto.BalanceDto;
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
 
+
+import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+
 import com.maveric.balanceservice.exception.BalanceNotFoundException;
 import com.maveric.balanceservice.mapper.BalanceMapper;
 import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.repository.BalanceRepository;
+
 import com.maveric.balanceservice.service.BalanceServiceImpl;
 
 import org.junit.jupiter.api.Test;
@@ -44,6 +48,28 @@ class BalanceServiceImplTest {
     private Page pageResult;
 
     @Test
+
+    void deleteBalance() {
+        when(repository.findById("2")).thenReturn(Optional.of(getBalance()));
+        willDoNothing().given(repository).deleteById("2");
+        String balanceDto = service.deleteBalance("2");
+        assertSame("Balance deleted successfully.", balanceDto);
+    }
+
+    @Test
+    void deleteBalance_failure() {
+        when(repository.findById("3")).thenReturn(Optional.empty());
+        Throwable error = assertThrows(BalanceNotFoundException.class, () -> service.deleteBalance("3"));
+        assertEquals("Balance not Found for Id-3", error.getMessage());
+    }
+
+    @Test
+    void deleteBalanceByAccountId() {
+        willDoNothing().given(repository).deleteByAccountId("123");
+        String balanceDto = service.deleteBalanceByAccountId("123");
+        assertSame("Balance deleted successfully.", balanceDto);
+    }
+        @Test
     void updateBalance() {
         when(repository.findById("2")).thenReturn(Optional.ofNullable(getBalance()));
         when(mapper.map(any(Balance.class))).thenReturn(getBalanceDto());
@@ -58,12 +84,13 @@ class BalanceServiceImplTest {
         assertEquals("Account Id not found! Cannot Update Balance", error.getMessage());
     }
 
-
+    @Test
     void createBalance() {
         when(mapper.map(any(BalanceDto.class))).thenReturn(getBalance());
         when(mapper.map(any(Balance.class))).thenReturn(getBalanceDto());
         when(repository.save(any())).thenReturn(getBalance());
         BalanceDto balanceDto = service.createBalance(getBalance().getAccountId(),getBalanceDto());
         assertSame(balanceDto.getAccountId(), getBalance().getAccountId());
+
     }
 }

@@ -9,9 +9,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class ExceptionControllerAdvisorTest {
     private ExceptionControllerAdvisor controllerAdvisor = new ExceptionControllerAdvisor();
@@ -21,7 +19,6 @@ class ExceptionControllerAdvisorTest {
         ErrorDto error = controllerAdvisor.handleBalanceNotFoundException(exception);
         assertEquals("404",error.getCode());
     }
-
 
     @Test
     void invalidException() {

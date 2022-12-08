@@ -3,6 +3,7 @@ package com.maveric.balanceservice.service;
 import com.maveric.balanceservice.dto.BalanceDto;
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+
 import com.maveric.balanceservice.exception.BalanceNotFoundException;
 import com.maveric.balanceservice.mapper.BalanceMapper;
 import com.maveric.balanceservice.model.Balance;
@@ -12,7 +13,11 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.maveric.balanceservice.constants.Constants.BALANCE_DELETED_SUCCESS;
+import static com.maveric.balanceservice.constants.Constants.BALANCE_NOT_FOUND_MESSAGE;
+
 import static com.maveric.balanceservice.constants.Constants.getCurrentDateTime;
+
 
 @Service
 public class BalanceServiceImpl implements  BalanceService{
@@ -29,6 +34,21 @@ public class BalanceServiceImpl implements  BalanceService{
     private BalanceMapper mapper;
 
     @Override
+
+    public String deleteBalance(String balanceId) {
+        if (repository.findById(balanceId).isEmpty()) {
+            log.info("Balance Id does not exist! Cannot delete Balance details.");
+            throw new BalanceNotFoundException(BALANCE_NOT_FOUND_MESSAGE + balanceId);
+        }
+        repository.deleteById(balanceId);
+        log.info("Deleted Balance details for given Balance Id");
+        return BALANCE_DELETED_SUCCESS;
+    }
+    @Override
+    public String deleteBalanceByAccountId(String accountId) {
+        repository.deleteByAccountId(accountId);
+        return BALANCE_DELETED_SUCCESS;
+    }
 
     public BalanceDto updateBalance(String accountId, String balanceId, BalanceDto balanceDto) {
         if (accountId.equals(balanceDto.getAccountId())) {
@@ -66,5 +86,7 @@ public class BalanceServiceImpl implements  BalanceService{
             throw new BalanceNotFoundException("Account Id not found! Cannot create balance.");
 
         }
+
     }
+
 }

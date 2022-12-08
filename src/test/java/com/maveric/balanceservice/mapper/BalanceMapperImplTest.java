@@ -29,4 +29,17 @@ class BalanceMapperImplTest {
         assertEquals(getBalance().get_id(), balancedto.get_id());
     }
 
+    @Test
+    void mapToModel() {
+
+        List<Balance> balances = balanceMapper.mapToModel(Arrays.asList(getBalanceDto(),getBalanceDto()));
+        assertEquals(2,balances.size());
+    }
+
+    @Test
+    void mapToDto() {
+        List<BalanceDto> balances = balanceMapper.mapToDto(Arrays.asList(getBalance(),getBalance()));
+        assertEquals(2,balances.size());
+    }
+
 }

@@ -4,6 +4,8 @@ import com.maveric.balanceservice.dto.BalanceDto;
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
 
+import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+
 
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
 
@@ -19,10 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.maveric.balanceservice.constants.Constants.*;
-import static com.maveric.balanceservice.constants.Constants.BALANCE_DELETED_SUCCESS;
-import static com.maveric.balanceservice.constants.Constants.BALANCE_NOT_FOUND_MESSAGE;
 
 import static com.maveric.balanceservice.constants.Constants.getCurrentDateTime;
+
+import static com.maveric.balanceservice.constants.Constants.BALANCE_DELETED_SUCCESS;
+import static com.maveric.balanceservice.constants.Constants.BALANCE_NOT_FOUND_MESSAGE;
 
 @Service
 public class BalanceServiceImpl implements BalanceService {
@@ -32,6 +35,24 @@ public class BalanceServiceImpl implements BalanceService {
     private BalanceRepository repository;
 
     @Autowired
+
+    private ModelMapper modelMapper;
+
+    @Override
+    public BalanceDto getBalanceByAccountId(String accountId) {
+
+        Balance balanceResult = repository.findByAccountId(accountId);
+        if (balanceResult != null)
+        {
+            log.info("Retrieved Balance details for given Account Id");
+            return mapper.map(balanceResult);
+        }
+        else
+        {
+            log.info("Balance not found for given Account Id returns Empty Balance details");
+            return new BalanceDto();
+        }
+    }
     private BalanceMapper mapper;
 
     @Override

@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 class BalanceMapperImplTest {
     BalanceMapperImpl balanceMapper=new BalanceMapperImpl();
+
     @Test
     void map() {
         BalanceDto balanceDto=getBalanceDto();
@@ -20,6 +21,7 @@ class BalanceMapperImplTest {
         assertEquals(getBalanceDto().getAccountId(), balance.getAccountId());
         assertEquals(getBalanceDto().get_id(), balance.get_id());
     }
+
 
     @Test
     void testMap() {
@@ -41,5 +43,6 @@ class BalanceMapperImplTest {
         List<BalanceDto> balances = balanceMapper.mapToDto(Arrays.asList(getBalance(),getBalance()));
         assertEquals(2,balances.size());
     }
+
 
 }

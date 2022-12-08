@@ -1,11 +1,11 @@
 package com.maveric.balanceservice.model;
 
-import com.maveric.balanceservice.enumeration.Currency;
 import lombok.*;
+import com.maveric.balanceservice.enumeration.Currency;
+
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDateTime;
 
 @Getter

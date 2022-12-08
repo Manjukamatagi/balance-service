@@ -3,11 +3,13 @@ package com.maveric.balanceservice.exception;
 import com.maveric.balanceservice.dto.ErrorDto;
 
 import feign.FeignException;
+
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+
 
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -93,7 +95,6 @@ public class ExceptionControllerAdvisor {
             errorDto.setMessage(HTTPMESSAGENOTREADABLEEXCEPTION_MESSAGE);
         return errorDto;
     }
-
     @ExceptionHandler(BalanceAlreadyExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ErrorDto handleBalanceAlreadyExistException(BalanceAlreadyExistException exception) {
@@ -112,7 +113,6 @@ public class ExceptionControllerAdvisor {
         errorDto.setCode(INTERNAL_SERVER_ERROR_CODE);
         errorDto.setMessage(INTERNAL_SERVER_ERROR_MESSAGE);
         exceptionString = exception.getMessage();
-
         log.error("{} {}-> {}",INTERNAL_SERVER_ERROR_CODE,INTERNAL_SERVER_ERROR_MESSAGE,exceptionString);
         return errorDto;
     }

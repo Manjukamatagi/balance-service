@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public
 class BalanceServiceApplicationTests {
-
 	public static final String APIV1 ="/api/v1/accounts/8123/balances";
 
 	@Test

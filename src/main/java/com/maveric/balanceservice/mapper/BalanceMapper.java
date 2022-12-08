@@ -15,4 +15,5 @@ public interface BalanceMapper {
     List<Balance> mapToModel (List<BalanceDto> balances);
     List<BalanceDto> mapToDto (List<Balance> balances);
 
+
 }

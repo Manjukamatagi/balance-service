@@ -3,6 +3,7 @@ package com.maveric.balanceservice.dto;
 import com.maveric.balanceservice.enumeration.Currency;
 import lombok.*;
 
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

@@ -3,13 +3,12 @@ package com.maveric.balanceservice.mapper;
 import com.maveric.balanceservice.dto.BalanceDto;
 import com.maveric.balanceservice.model.Balance;
 import org.springframework.stereotype.Component;
-
 import java.util.Collections;
 import java.util.List;
-
 @Component
 
-public class BalanceMapperImpl implements BalanceMapper {
+    public class BalanceMapperImpl implements BalanceMapper {
+
     @Override
     public Balance map(BalanceDto balanceDto) {
         return new Balance(
@@ -21,6 +20,7 @@ public class BalanceMapperImpl implements BalanceMapper {
                 balanceDto.getUpdatedAt()
         );
     }
+
     @Override
     public BalanceDto map(Balance balance) {
         return new BalanceDto(
@@ -32,6 +32,7 @@ public class BalanceMapperImpl implements BalanceMapper {
                 balance.getUpdatedAt()
         );
     }
+
     @Override
     public List<Balance> mapToModel(List<BalanceDto> balanceDtos) {
         if(!balanceDtos.isEmpty())
@@ -61,5 +62,6 @@ public class BalanceMapperImpl implements BalanceMapper {
         else
             return Collections.<BalanceDto>emptyList();
     }
+
 
 }

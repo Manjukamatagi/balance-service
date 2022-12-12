@@ -49,7 +49,6 @@ public class BalanceController {
         BalanceDto balanceDtoResponse = balanceService.createBalance(accountId,balanceDto);
         log.info("New Balance Created successfully");
         return new ResponseEntity<>(balanceDtoResponse, HttpStatus.CREATED);
-
     }
 
     /* Delete Balance details by balanceId */

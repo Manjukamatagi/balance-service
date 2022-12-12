@@ -1,27 +1,15 @@
 package com.maveric.balanceservice.service;
 
 import com.maveric.balanceservice.dto.BalanceDto;
-
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
-
-import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
-
-
-import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
-
 import com.maveric.balanceservice.exception.BalanceNotFoundException;
 import com.maveric.balanceservice.mapper.BalanceMapper;
 import com.maveric.balanceservice.model.Balance;
 import com.maveric.balanceservice.repository.BalanceRepository;
-
 import org.modelmapper.ModelMapper;
-
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import static com.maveric.balanceservice.constants.Constants.*;
-
 import static com.maveric.balanceservice.constants.Constants.getCurrentDateTime;
 
 import static com.maveric.balanceservice.constants.Constants.BALANCE_DELETED_SUCCESS;
@@ -37,6 +25,8 @@ public class BalanceServiceImpl implements BalanceService {
     @Autowired
 
     private ModelMapper modelMapper;
+    @Autowired
+    private BalanceMapper mapper;
 
     @Override
     public BalanceDto getBalanceByAccountId(String accountId) {
@@ -53,7 +43,7 @@ public class BalanceServiceImpl implements BalanceService {
             return new BalanceDto();
         }
     }
-    private BalanceMapper mapper;
+
 
     @Override
     public BalanceDto getBalanceDetails(String accountId, String balanceId) {

@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class BalanceDto {
     private String  _id;
     @Valid
-    @NotBlank(message = "Account Id is mandatory")
+    @NotBlank
     private String accountId;
     @Valid
     @NotNull(message = "Amount is mandatory")

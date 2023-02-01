@@ -56,6 +56,7 @@ public class ExceptionControllerAdvisor {
         errorDto.setMessage(BAD_REQUEST_MESSAGE);
         errorDto.setErrors(errors);
         return errorDto;
+
     }
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)

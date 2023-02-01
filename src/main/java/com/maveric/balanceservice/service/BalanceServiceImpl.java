@@ -98,8 +98,8 @@ public class BalanceServiceImpl implements BalanceService {
                 log.error("Created new Balance successfully");
                 return mapper.map(balanceResult);
             } else {
-                log.error("Balance Already Exist for this Account Id");
-                throw new BalanceAlreadyExistException("Balance already exists for this Account Id-" + balanceDto.getAccountId());
+                log.error("Account Already Exist for this Account Id");
+                throw new BalanceAlreadyExistException("Account already exists for this Account Id-" + balanceDto.getAccountId());
             }
         } else {
             log.error("Account Id not found! Cannot create balance.");

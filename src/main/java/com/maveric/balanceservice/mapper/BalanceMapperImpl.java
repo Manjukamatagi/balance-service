@@ -63,5 +63,17 @@ import java.util.List;
             return Collections.<BalanceDto>emptyList();
     }
 
+    @Override
+    public BalanceDto entityToDto(Balance balance) {
+        return BalanceDto.builder()
+                ._id(balance.get_id())
+                .amount(balance.getAmount())
+                .accountId(balance.getAccountId())
+                .currency(balance.getCurrency())
+                .createdAt(balance.getCreatedAt())
+                .updatedAt(balance.getUpdatedAt())
+                .build();
+    }
+
 
 }

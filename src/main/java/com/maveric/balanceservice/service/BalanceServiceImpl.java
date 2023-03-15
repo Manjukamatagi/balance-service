@@ -1,7 +1,9 @@
 package com.maveric.balanceservice.service;
 
 import com.maveric.balanceservice.dto.BalanceDto;
+import com.maveric.balanceservice.exception.AccountIdMismatchException;
 import com.maveric.balanceservice.exception.BalanceAlreadyExistException;
+import com.maveric.balanceservice.exception.BalanceIdNotFoundException;
 import com.maveric.balanceservice.exception.BalanceNotFoundException;
 import com.maveric.balanceservice.mapper.BalanceMapper;
 import com.maveric.balanceservice.model.Balance;
@@ -72,7 +74,8 @@ public class BalanceServiceImpl implements BalanceService {
 
     public BalanceDto updateBalance(String accountId, String balanceId, BalanceDto balanceDto) {
         if (accountId.equals(balanceDto.getAccountId())) {
-            Balance balanceResult = repository.findById(balanceId).orElseThrow(() -> new BalanceNotFoundException("Balance not found"));
+            Balance balanceResult = repository.findById(
+                    balanceId).orElseThrow(() -> new BalanceNotFoundException("Balance not found"));
             balanceResult.set_id(balanceResult.get_id());
             balanceResult.setAmount(balanceDto.getAmount());
             balanceResult.setCurrency(balanceDto.getCurrency());
@@ -98,8 +101,8 @@ public class BalanceServiceImpl implements BalanceService {
                 log.error("Created new Balance successfully");
                 return mapper.map(balanceResult);
             } else {
-                log.error("Account Already Exist for this Account Id");
-                throw new BalanceAlreadyExistException("Account already exists for this Account Id-" + balanceDto.getAccountId());
+                log.error("Balance Already Exist for this Account Id");
+                throw new BalanceAlreadyExistException("Balance already exists for this Account Id-" + balanceDto.getAccountId());
             }
         } else {
             log.error("Account Id not found! Cannot create balance.");
@@ -107,5 +110,18 @@ public class BalanceServiceImpl implements BalanceService {
 
         }
 
+    }
+
+    @Override
+
+    public BalanceDto getBalanceIdByAccountId(String accountId, String balanceID) throws BalanceIdNotFoundException, AccountIdMismatchException {
+        Balance balance = repository.findById(balanceID).orElseThrow(
+                () -> new BalanceIdNotFoundException("Balance id not available")
+        );
+        if (accountId.equals(balance.getAccountId())) {
+            return mapper.entityToDto(balance);
+        } else {
+            throw new AccountIdMismatchException("Account Id not available");
+        }
     }
 }
